@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block static %}
+   <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/cheatsheet/">
+
+
+
+
+    <link href="/media/default/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<!--<script>-->
+
+<!--    const content = "24234234235453";-->
+<!--const text = document.querySelector(".text-typing");-->
+<!--let i = 0;-->
+
+<!--function typing(){-->
+<!--    let txt = content[i++];-->
+<!--    text.innerHTML += txt;-->
+<!--    if (i > content.length) {-->
+<!--        text.textContent = "";-->
+<!--        i = 0;-->
+<!--    }-->
+<!--}-->
+<!--setInterval(typing, 200)-->
+<!--</script>-->
+
+
+<form method="post" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+<div class="container" style="text-align: center; vertical-align: middle; ">
+  <div class="row d-flex align-items-center justify-content-center">
+    <div class="col-3">
+        <br><br><a href="/">
+        <img src="/media/default/neoul_main_logo.png" width="75%" height="25%">
+        <br><br></a>
+    </div>
+    <div class="col-2" >
+      <div class="input-group">
+        <select name="type" class="form-select select-primary" aria-label=".form-select example" style="text-align: center; vertical-align: middle;">
+<option selected value="0">통합검색</option>
+          <option value="1">태그</option>
+          <option value="2">질문</option>
+          <option value="3">답변</option>
+
+        </select>
+      </div>
+    </div>
+
+
+
+    <!-- 두 번째 input-group -->
+    <div class="col-5">
+      <div class="input-group">
+        <input name="search" type="text" id="form1" class="form-control" placeholder="검색어를 입력하세요" aria-label=".form-control" />
+        <button class="btn" style="width:30%; background-color:#E9541F; color:white;" type="submit" id="search2">검색</button>
+      </div>
+    </div>
+
+      <div class="col-2 px-0">
+      <button class="btn" style="width:100%; background-color:#E9541F; color:white;" type="button" onclick="window.open('/create', '_self');">새 질문</button>
+    </div>
+
+  </div>
+</div>
+
+
+</form>
+
+
+
+
+{% if post %}
+
+
+    <div class="container">
+
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+
+        {% if post.keyword1 == post.keyword2 %}
+                    <p class="card-text"><big><a href="/search/1/{{post.keyword1}}" style="z-index: 10;"><span class="badge rounded-pill bg-light text-dark">#{{post.keyword1}}</span></a> </big></p>
+                  {% else %}
+                  <p class="card-text"><big><a href="/search/1/{{post.keyword1}}" style="z-index: 10;"><span class="badge rounded-pill bg-light text-dark">#{{post.keyword1}}</span></a> <a href="/board/search/1/{{post.keyword2}}" style="z-index: 10;"><span class="badge rounded-pill bg-light text-dark">#{{post.keyword2}}</span></a></big></p>
+                  {% endif %}        <h2>{{post.title}}</h2>
+<container style="display: inline-block; text-align: justify; width: 100%;">
+    <div style="display: inline;">{{ post.create_date|date:'Y.m.d H:i' }}</div>
+    <div style="display: inline; float: right;">조회 {{post.count}} | 추천 {{post.recommend}}</div>
+</container>
+    <hr>
+
+        <h7 class="text-typing">
+        {{post.contents | linebreaks }}
+        </h7>
+
+        <br><br>
+
+        <div style="text-align: center;">
+            <a href="https://law.go.kr/법령/{{post.keyword2}}" style="text-decoration:none; color:inherit;" target="_blank">
+            <span style="display: inline-block;">
+        <big><big><big><span class="badge rounded-pill bg-light text-dark">관련 법률 확인</span></big></big></big>
+            </span></a>
+<a href="/recommend/{{post.id}}" style="text-decoration:none; color:inherit;">
+    <span style="display: inline-block;">
+        <big><big><big><span class="badge rounded-pill bg-light text-dark">★ 추천</span></big></big></big>
+    </span></a>
+
+<!--    <span style="display: inline-block;">-->
+<!--        <big><big><big><span class="badge rounded-pill bg-light text-dark"  id="copyLinkDiv">🔗 공유</span></big></big></big>-->
+<!--    </span>-->
+
+</div>
+        </div>
+
+
+    </div>
+
+{% endif %}
+
+        <script src="/media/default/bootstrap.bundle.min.js"></script>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% load static %}
+
+<html lang="ko">
+  <head>
+      <script src="/media/default/popper.min.js"></script>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <title>너울 - 대한민국 법률 자문 서비스 AI</title>
+      <script src="/media/default/jquery-3.3.1.slim.min.js"></script>
+      <script src="/media/default/popper.min.v2.js"></script>
+      <script src="/media/default/bootstrap.min.js"></script>
+      <link rel="icon" type="image/x-icon" href="/media/default/neoul_fabicon.png">
+      <link href="/media/default/bootstrap.min.css" rel="stylesheet">
+      <style>
+
+           @font-face {
+            font-family: 'Noto Sans'; /* 폰트의 이름을 지정합니다. */
+            src: url('/media/default/NotoSansKR.ttf') format('truetype'); /* TTF 파일의 경로를 지정합니다. */
+
+        }
+      </style>
+    {% block style %}
+    {% endblock %}
+
+
+
+  </head>
+  <body style="font-family: 'Noto Sans', sans-serif;">
+
+<header>
+
+
+</header>
+
+      {% block content %}
+
+    {% endblock %}
+    <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>
+  <footer class="blog-footer">
+    <hr>
+      <p style="text-align:center;" >본 페이지에는 검증되지 않았거나 편향된 내용이 있을 수 있습니다. </p>
+      <p style="text-align:right; "><a href="/board/terms" style="text-decoration:none; color:#E9541F">약관</a></p>
+
+
+</footer>
+  </body></html>

@@ -1,0 +1,319 @@
+{% extends "base.html" %}
+{% block static %}
+
+
+{% endblock %}
+
+{% block content %}
+<style>
+        .card-body, .page-link {
+            background-color: #FFFFFF;
+            transition: background-color 1s ease;
+        }
+
+        .card-body:hover, .page-link:hover {
+            background-color: #F7ECE9;
+            transition: background-color 1s ease;
+        }
+
+        .mice {
+    font-family: 'MICEGothic Bold';
+    src: url('/media/default/MICEGothic-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+
+
+}
+
+</style>
+
+
+
+{% if page == 'home' %}
+<form method="post" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+<div class="container" style="text-align: center; vertical-align: middle; ">
+  <div class="row d-flex align-items-center justify-content-center">
+    <div class="col-12">
+        <br><br><a href="/">
+        <img src="/media/default/neoul_main_logo.png" width="25%" height="25%"></a>
+        <br><br>
+    </div>
+    <div class="col-3" >
+      <div class="input-group input-group-lg">
+        <select name="type" class="form-select select-primary" aria-label=".form-select example" style="text-align: center; vertical-align: middle;">
+          <option selected value="0">통합검색</option>
+          <option value="1">태그</option>
+          <option value="2">질문</option>
+          <option value="3">답변</option>
+        </select>
+      </div>
+    </div>
+
+
+
+    <!-- 두 번째 input-group -->
+    <div class="col-6">
+      <div class="input-group input-group-lg">
+        <input name="search" type="text" id="form1" class="form-control" placeholder="검색어를 입력하세요" aria-label=".form-control"/>
+        <button class="btn" style="width:30%; background-color:#E9541F; color:white;" type="submit" id="search2">검색</button>
+      </div>
+    </div>
+
+      <div class="col-2 px-0">
+      <button class="btn btn-lg" style="width:100%; background-color:#E9541F; color:white;" type="button" onclick="window.open('/create', '_self');">새 질문</button>
+    </div>
+
+  </div>
+</div>
+
+
+</form>
+<br><br><br>
+
+{% endif %}
+
+{% if page == 'search' %}
+
+
+<form method="post" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+<div class="container" style="text-align: center; vertical-align: middle; ">
+  <div class="row d-flex align-items-center justify-content-center">
+    <div class="col-3">
+        <br><br><a href="/">
+        <img src="/media/default/neoul_main_logo.png" width="75%" height="25%">
+        <br><br></a>
+    </div>
+    <div class="col-2" >
+      <div class="input-group">
+        <select name="type" class="form-select select-primary" aria-label=".form-select example" style="text-align: center; vertical-align: middle;">
+           {% if cid == 0 %}
+            <option selected value="0">통합검색</option>
+            {% else %}
+              <option value="0">통합검색</option>
+            {% endif %}
+            {% if cid == 1 %}
+          <option selected value="1">태그</option>
+            {% else %}
+            <option value="1">태그</option>
+            {% endif %}
+
+            {% if cid == 2 %}
+          <option selected value="2">질문</option>
+            {% else %}
+            <option value="2">질문</option>
+            {% endif %}
+
+            {% if cid == 3 %}
+            <option value="3" selected>답변</option>
+            {% else %}
+          <option value="3">답변</option>
+            {% endif %}
+        </select>
+      </div>
+    </div>
+
+
+
+    <!-- 두 번째 input-group -->
+    <div class="col-5">
+      <div class="input-group">
+        <input name="search" type="text" id="form1" class="form-control" placeholder="검색어를 입력하세요" aria-label=".form-control" value={{name}} />
+        <button class="btn" style="width:30%; background-color:#E9541F; color:white;" type="submit" id="search2">검색</button>
+      </div>
+    </div>
+
+      <div class="col-2 px-0">
+      <button class="btn" style="width:100%; background-color:#E9541F; color:white;" type="button" onclick="window.open('/create', '_self');">새 질문</button>
+    </div>
+
+  </div>
+</div>
+
+
+</form>
+
+{% endif %}
+
+
+{% if page == 'list' %}
+
+
+<form method="post" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+<div class="container" style="text-align: center; vertical-align: middle; ">
+  <div class="row d-flex align-items-center justify-content-center">
+    <div class="col-3">
+        <br><br><a href="/">
+        <img src="/media/default/neoul_main_logo.png" width="75%" height="25%">
+        <br><br></a>
+    </div>
+    <div class="col-2" >
+      <div class="input-group">
+        <select name="type" class="form-select select-primary" aria-label=".form-select example" style="text-align: center; vertical-align: middle;">
+          <option selected value="0">통합검색</option>
+          <option value="1">태그</option>
+          <option value="2">질문</option>
+          <option value="3">답변</option>
+        </select>
+      </div>
+    </div>
+
+
+
+    <!-- 두 번째 input-group -->
+    <div class="col-5">
+      <div class="input-group">
+        <input name="search" type="text" id="form1" class="form-control" placeholder="검색어를 입력하세요" aria-label=".form-control" />
+        <button class="btn" style="width:30%; background-color:#E9541F; color:white;" type="submit" id="search2">검색</button>
+      </div>
+    </div>
+
+      <div class="col-2 px-0">
+      <button class="btn" style="width:100%; background-color:#E9541F; color:white;" type="button" onclick="window.open('/create', '_self');">새 질문</button>
+    </div>
+
+  </div>
+</div>
+
+
+</form>
+
+{% endif %}
+
+
+
+    <div class="container">
+
+             {% if page == 'search' %}<span style=" font-size: 30px;"> 검색결과 </span>{% endif %}
+        {% if page == 'list' %}<span style=" font-size: 30px;"> 전체보기 </span>{% endif %}
+        {% if page == 'home' %}<span style=" font-size: 30px;"> 최근 질문 </span> <a href="/list" style="color: #E9541F; text-decoration:none;" ><span style=" font-size: 15px;">전체보기</span></a>{% endif %}
+            <br><br>
+
+
+
+          <div>
+        <div class="bd-example">
+        <div class="row  row-cols-1 row-cols-md-2 g-5">
+{% for post in posts %}
+
+
+
+          <div class="col">
+                   <div class="card">
+
+              <div class="card-body">
+                  {% if post.keyword1 == post.keyword2 %}
+                    <p class="card-text"><big><a href="/search/1/{{post.keyword1}}" style="z-index: 10;"><span class="badge rounded-pill bg-light text-dark">#{{post.keyword1}}</span></a> </big></p>
+                  {% else %}
+                  <p class="card-text"><big><a href="/search/1/{{post.keyword1}}" style="z-index: 10;"><span class="badge rounded-pill bg-light text-dark">#{{post.keyword1}}</span></a> <a href="/search/1/{{post.keyword2}}" style="z-index: 10;"><span class="badge rounded-pill bg-light text-dark">#{{post.keyword2}}</span></a></big></p>
+                  {% endif %}
+<!--                <h1 style="float: left; margin-right: 10px; font-family: 'MICEGothic Bold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; color: #E9541F;"><big>Q </big></h1>-->
+                 <a class="card-a" href="/read/{{post.id}}" style="text-decoration:none; color:inherit; z-index: 9;">
+                     <h5 class="card-title" style="overflow: hidden;">{{ post.title }}</h5></a>
+<!--                <p class="card-text">{{ post.contents | slice:"100" }}{% if post.contents|length > 100 %}...{% endif %}</p>-->
+<big><big><br></big></big>
+                  <p class="card-text"><b>추천 {{post.recommend}} </b> | 조회 {{post.count}} |  {{ post.create_date|timesince}} 전</p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          {% endfor %}
+        </div>
+        </div>
+      </div>
+
+
+        </tbody>
+    </table>
+<br><br>
+
+{% if page != 'home' %}
+
+       <!-- 페이징처리 시작 -->
+    <ul class="pagination justify-content-center">
+        <!-- 이전페이지 -->
+        {% if posts.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ posts.previous_page_number }}" style="color:#E9541F;">이전</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+        </li>
+        {% endif %}
+
+        {% if posts.number > 3  %}
+
+        <li class="page-item">
+
+            <a class="page-link" href="?page={{ 1 }}" style="color:#E9541F;"> 1 </a>
+        </li>
+           <li class="page-item">
+            <span class="sr-only page-link" style="color:#E9541F;">...</span>
+        </li>
+
+
+		        {% endif %}
+
+
+          {% for page_number in page_range %}
+
+        {% if page_number == posts.number %}
+
+        <li class="page-item" aria-current="page" style="background-color:#E9541F;">
+            <a class="page-link" href="?page={{ page_number }}" style="background-color:#E9541F; color:white;">{{ page_number }}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_number }}"  style="color:#E9541F;">{{ page_number }}</a>
+        </li>
+        {% endif %}
+
+        {% endfor %}
+
+          {% if posts.number < max_index %}
+        <li class="page-item">
+            <span class="sr-only page-link"  style="color:#E9541F;">...</span>
+        </li>
+        <li class="page-item" style="color:#E9541F;">
+
+            <a class="page-link" href="?page={{ max_index|add:'2' }}"  style="color:#E9541F;">{{ max_index|add:"2" }}</a>
+        </li>
+
+		        {% endif %}
+
+
+
+
+        <!-- 다음페이지 -->
+        {% if posts.has_next %}
+        <li class="page-item" >
+            <a class="page-link" href="?page={{ posts.next_page_number }}" style="color:#E9541F;">다음</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+        </li>
+        {% endif %}
+    </ul>
+    <!-- 페이징처리 끝 -->
+
+    </div>
+{% endif %}
+
+        <script src="/media/default/bootstrap.bundle.min.js"></script>
+
+{% endblock %}
